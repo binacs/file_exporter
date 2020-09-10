@@ -1,0 +1,6 @@
+[ExporterConfig]
+# RootPath = "/path/to/workspace/"
+HttpPort = "8012"
+Gateway = "http://127.0.0.1:9091"   # pushgateway url
+[ExporterConfig.Dir_Keyword]
+"/tmp" = "file_metrics"             # directory and the file prefix
