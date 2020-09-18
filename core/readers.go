@@ -1,7 +1,9 @@
 package core
 
 import (
+	"context"
 	"io/ioutil"
+	"runtime"
 	"strings"
 	"time"
 
@@ -24,11 +26,22 @@ type ReadersService struct {
 	Manager *ManagerService `inject-name:"ExporterService"`
 	Logger  log.Logger      `inject-name:"ReadersLogger"`
 	Readers map[string]*reader
+	ctx     context.Context
+	cancel  context.CancelFunc
 }
 
 func (rs *ReadersService) AfterInject() error {
 	rs.Readers = make(map[string]*reader)
+	rs.ctx, rs.cancel = context.WithCancel(context.Background())
 	return nil
+}
+
+func (rs *ReadersService) Cancel() {
+	rs.Logger.Info("ReadersService Cancel, before cancel", "go routines", runtime.NumGoroutine())
+	rs.cancel()
+	time.Sleep(2 * time.Second)
+	rs.Logger.Info("ReadersService Cancel, after cancel", "go routines", runtime.NumGoroutine())
+	rs.ctx, rs.cancel = context.WithCancel(context.Background())
 }
 
 // AddReader add a reader
@@ -40,18 +53,25 @@ func (rs *ReadersService) AddReader(file string) {
 	}
 	rs.Logger.Debug("AddReader: ", "reader", r.ipcFile)
 	rs.Readers[file] = r
-	go r.loop()
+	go r.loop(rs.ctx)
 }
 
-func (r *reader) loop() {
+func (r *reader) loop(ctx context.Context) {
+	t := time.NewTimer(constReaderInterval)
 	for {
-		// mutex ?
-		oridata := r.readMetrics()
-		if len(oridata) < 10 {
-			continue
+		select {
+		case <-ctx.Done():
+			return
+		case <-t.C:
+			// mutex ?
+			oridata := r.readMetrics()
+			if len(oridata) < 10 {
+				continue
+			}
+			newdata := r.buildNewData(oridata)
+			r.collectMetrics(newdata)
+			t.Reset(constReaderInterval)
 		}
-		newdata := r.buildNewData(oridata)
-		r.collectMetrics(newdata)
 	}
 }
 

@@ -4,8 +4,8 @@ github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c h1:wp0DHAfJ+6pyUU/
 github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c/go.mod h1:y6s5Mc8Z5qatGOOCvRJyBVblQ91UChAhDUgMAcrcW0c=
 github.com/binacsgo/log v0.0.0-20200827012301-4f49b8c3150e h1:6taPIcv86jW7tuE2NN8wBErJwFtm5RzwxITy4JTKcmA=
 github.com/binacsgo/log v0.0.0-20200827012301-4f49b8c3150e/go.mod h1:p+PaxGF8XlyWU4ZkTmxItLIOAJ2dRz9r0YZq0+lgTGA=
-github.com/binacsgo/treemap v0.0.0-20200910075211-661bba33ea8f h1:hI68niOym4wSICJ7mLkF+ecNJMDGnG9S9eeBSB1Afp4=
-github.com/binacsgo/treemap v0.0.0-20200910075211-661bba33ea8f/go.mod h1:Z6q5+4+VkXOel4EIZbjYm0Fhi1dPXeA1PhXMbJ2xEPI=
+github.com/binacsgo/pqueue v0.0.0-20200916070159-4fbdee8a95e3 h1:9g/gYIyYZrU8n/dK5TP3qoN4xQyPpIInUo3z0Q2hOsM=
+github.com/binacsgo/pqueue v0.0.0-20200916070159-4fbdee8a95e3/go.mod h1:sZkECHiIYBfPE5wyRUaNft6RFbzfAcnOrFPEHrADHZE=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

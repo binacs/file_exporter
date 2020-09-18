@@ -35,7 +35,7 @@ func (hs *HttpService) ReloadManager(ctx *gin.Context) {
 		ctx.String(http.StatusInternalServerError, err.Error())
 		return
 	}
-	hs.ManagerSvc.OnStart()
+	hs.ManagerSvc.ReStart()
 	hs.Logger.Info("config reload success", "new config", hs.Config)
 	ctx.String(http.StatusOK, "reload finish")
 	return

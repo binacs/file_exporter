@@ -21,11 +21,13 @@ type ManagerService struct {
 	Ipcfiles   []string
 	DataChan   chan updata // string or other struct with more information
 	GlobalMu   sync.Mutex
+	httpc      *http.Client
 }
 
 func (es *ManagerService) AfterInject() error {
 	es.Ipcfiles = []string{}
 	es.DataChan = make(chan updata, constMaxChanSize)
+	es.httpc = &http.Client{Timeout: constHTTPTimeout}
 	return nil
 }
 
@@ -37,8 +39,13 @@ func (es *ManagerService) OnStart() {
 }
 
 func (es *ManagerService) ReStart() {
+	oriIpcfiles := es.Ipcfiles
 	es.getIpcFiles()
-	es.createReaders()
+	if checkdiff(oriIpcfiles, es.Ipcfiles) {
+		es.Logger.Info("exporter ReStart() do actually.")
+		es.ReadersSvc.Cancel()
+		es.createReaders()
+	}
 	es.Logger.Info("exporter ReStart() succeed.")
 }
 
@@ -104,8 +111,7 @@ func (es *ManagerService) sendMetricsToGateway(url, data string) error {
 		return errors.New("sendMetricsToGateway NewRequest Error.")
 	}
 	//req.Header.Set("Content-Type", string(expfmt.FmtProtoDelim))
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := es.httpc.Do(req)
 	if err != nil {
 		return errors.New("sendMetricsToGateway Do request Error.")
 	}
@@ -118,4 +124,22 @@ func (es *ManagerService) sendMetricsToGateway(url, data string) error {
 	}
 	es.Logger.Info("sendMetricsToGateway Succeed", "url", url, "data size", len(data))
 	return nil
+}
+
+func checkdiff(oris, news []string) bool {
+	if len(oris) != len(news) {
+		return true
+	}
+	var m map[string]bool
+	for _, file := range oris {
+		m[file] = true
+	}
+	for _, file := range news {
+		_, ok := m[file]
+		if !ok {
+			return true
+		}
+		delete(m, file)
+	}
+	return len(m) != 0
 }

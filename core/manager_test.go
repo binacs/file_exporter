@@ -28,7 +28,7 @@ func TestManagerService_getIpcFiles(t *testing.T) {
 			fields: fields{
 				Logger: log.NewNopLogger(),
 				Config: &config.Config{
-					ExporterConfig: config.ExporterConfig{
+					ExporterConfig: &config.ExporterConfig{
 						Dir_Keyword: map[string]string{"/tmp": "file_metrics"},
 					},
 				},
@@ -72,7 +72,7 @@ func TestManagerService_createReaders(t *testing.T) {
 			fields: fields{
 				Logger: log.NewNopLogger(),
 				Config: &config.Config{
-					ExporterConfig: config.ExporterConfig{
+					ExporterConfig: &config.ExporterConfig{
 						Dir_Keyword: map[string]string{"/tmp": "file_metrics"},
 					},
 				},
@@ -126,7 +126,7 @@ func TestManagerService_sendMetricsToGateway(t *testing.T) {
 			fields: fields{
 				Logger: log.NewNopLogger(),
 				Config: &config.Config{
-					ExporterConfig: config.ExporterConfig{
+					ExporterConfig: &config.ExporterConfig{
 						Gateway:     "http://127.0.0.1:9091",
 						Jobname:     "file_exporter",
 						Dir_Keyword: map[string]string{"/tmp": "file_metrics"},

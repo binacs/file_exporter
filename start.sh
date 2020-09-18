@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./bin/file_exporter >> error.log 2>&1 &
+./bin/file_exporter -configfile ./config.toml
