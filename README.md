@@ -2,7 +2,7 @@
 
 file_exporter's function:
 
-- Collect metrics-data from files and send them to prometheus-pushgateway
+> Collect metrics-data from files and send them to prometheus-pushgateway
 
 ## 0. Quick Start
 
@@ -32,4 +32,4 @@ File_exporter will read all the files named "file_metrics*" under the "tmp" dire
 
 ## 2. What's more?
 
-Based on [treemap](https://github.com/binacsgo/treemap), file_exporter record the send time of each file, and it will delete the data on pushgateway in some time.
+Based on [PQueue](https://github.com/binacsgo/pqueue), file_exporter record the send time of each file, and it will delete the data on pushgateway in some time.
