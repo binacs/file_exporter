@@ -1,5 +1,6 @@
-github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/BurntSushi/toml v1.2.1 h1:9F2/+DoOYIOksmaJFPw1tGFy1eDnIJXg+UHjuD8lTak=
+github.com/BurntSushi/toml v1.2.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c h1:wp0DHAfJ+6pyUU/ahXj7bVweZ4y3K+96J+NWqZzm2VM=
 github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c/go.mod h1:y6s5Mc8Z5qatGOOCvRJyBVblQ91UChAhDUgMAcrcW0c=
 github.com/binacsgo/log v0.0.0-20200827012301-4f49b8c3150e h1:6taPIcv86jW7tuE2NN8wBErJwFtm5RzwxITy4JTKcmA=
