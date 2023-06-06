@@ -3,7 +3,7 @@ module github.com/BinacsLee/file_exporter
 go 1.12
 
 require (
-	github.com/BurntSushi/toml v1.3.0
+	github.com/BurntSushi/toml v1.3.1
 	github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c
 	github.com/binacsgo/log v0.0.0-20200827012301-4f49b8c3150e
 	github.com/binacsgo/pqueue v0.0.0-20200916070159-4fbdee8a95e3
