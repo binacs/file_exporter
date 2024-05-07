@@ -7,7 +7,7 @@ require (
 	github.com/binacsgo/inject v0.0.0-20200626113918-c47dac618e7c
 	github.com/binacsgo/log v0.0.0-20200827012301-4f49b8c3150e
 	github.com/binacsgo/pqueue v0.0.0-20200916070159-4fbdee8a95e3
-	github.com/gin-gonic/gin v1.9.1
+	github.com/gin-gonic/gin v1.10.0
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	go.uber.org/zap v1.16.0 // indirect
